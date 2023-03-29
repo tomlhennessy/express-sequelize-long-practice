@@ -1,7 +1,7 @@
 # Long Practice: Using Sequelize In Express Routes
 
-In this long practice, you will be using **Sequelize** in an **Express** server 
-to run migrations, seed the database, and connect `GET`, `PUT`, `DELETE` and 
+In this long practice, you will be using **Sequelize** in an **Express** server
+to run migrations, seed the database, and connect `GET`, `PUT`, `DELETE` and
 `UPDATE` routes to their appropriate database operations.
 
 This project parallels one you completed in SQL. Hopefully through this process,
@@ -10,28 +10,29 @@ database operations.
 
 ## Getting started
 
-Download the starter. `cd` into __server__ folder, and install dependencies
-using `npm install`.
+Download the starter.
 
-Create a __server/.env__ file in order to store environment variables. Add a
-variable `DB_FILE` (which is already in use in __server/config/database.js__).
-You can model the __.env__ file after __.env.example__, specifying the location 
-of the database to be created.
+Install dependencies using `npm install`. This will install dependencies at the root of the project, as well as install dependencies within the __server__ folder.
 
-Notice that the starter includes __server/.sequelizerc__ and 
-__server/config/database.js__, as well as __migrations__, __models__, and 
+`cd` into __server__ folder, and create a __server/.env__ file in order to store
+environment variables. Add a variable `DB_FILE` (which is already in use in
+__server/config/database.js__). You can model the __.env__ file after
+__.env.example__, specifying the location of the database to be created.
+
+Notice that the starter includes __server/.sequelizerc__ and
+__server/config/database.js__, as well as __migrations__, __models__, and
 __seeders__ in the __server/db__ folder.
 
 ### Migrations and seeders
 
-Run the appropriate `migrate` command using the **Sequelize CLI** to create the 
+Run the appropriate `migrate` command using the **Sequelize CLI** to create the
 database and the table(s) specified in the existing migrations.
 
 > Remember: You'll need `dotenv` before `npx` in order to set the
 > environment variable for the database file location.
 
 Verify that the __db/dev.db__ file was created. If you encounter any
-errors or do not see this file, go back and check that your __.env__ file has 
+errors or do not see this file, go back and check that your __.env__ file has
 been accurately set up.
 
 Verify the table exists by checking its `schema` using the **Sqlite CLI**.
@@ -42,13 +43,13 @@ Verify the table has data using the **Sqlite CLI**.
 
 ### Run the application
 
-Start the **Express** server in development mode using 
+Start the **Express** server in development mode using
 
 ```sh
 npm run dev
 ```
 
-In your browser or **Postman**, load the root path: 
+In your browser or **Postman**, load the root path:
 [http://localhost:5000/][localhost]
 
 If all is working correctly, you should see

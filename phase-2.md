@@ -1,7 +1,9 @@
 # Basic Phase 2 - INSERT Using Sequelize Queries
 
-In this phase, you'll complete the **Sequelize** code for an **Express** route 
+In this phase, you'll complete the **Sequelize** code for an **Express** route
 which `INSERT`s data into the database.
+
+You can check your work as you work through this phase by running `npm test test/phase-02-spec.js` from the root directory.
 
 ## Create a new tree
 
@@ -48,3 +50,6 @@ added previously.
 Third, what happens if some fields are missing from the request body?
 
 Can you think of anything else that should be tested also?
+
+Run  `npm test test/phase-02-spec.js` from the root directory to check that all mocha
+tests for this phase are passing.

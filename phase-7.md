@@ -3,6 +3,8 @@
 In this phase, you'll update a couple routes to return data containing both
 `Trees` and `Insects`.
 
+You can check your work as you work through this phase by running `npm test test/phase-07-spec.js` from the root directory.
+
 ## Setup
 
 Run the **Express** application:
@@ -11,10 +13,10 @@ Run the **Express** application:
 npm run dev
 ```
 
-Open the routes file where you'll need to make changes: 
+Open the routes file where you'll need to make changes:
 __server/routes/joined.js__.
 
-Look at your notes or the [Sequelize Documentation][ref-docs] if you need a 
+Look at your notes or the [Sequelize Documentation][ref-docs] if you need a
 refresher on Eager vs. Lazy Loading.
 
 ## Eager loading
@@ -27,7 +29,7 @@ the `id` and `name` for each `Insect`, and order them alphabetically.
 
 That means, the trees with `insects: []` would be omitted.
 
-You can find information on the solution by going to the [Eager Loading 
+You can find information on the solution by going to the [Eager Loading
 Documentation][eager-loading-docs].
 
 > Hint: You may need to look through the first 4-5 sections, or so.
@@ -92,7 +94,7 @@ the `id` and `tree` for each `Tree`, and order them alphabetically.
 
 ### Result
 
-If you complete both challenges, the response will look something like
+The response will look something like:
 
 ```json
 [{
@@ -123,12 +125,17 @@ If you complete both challenges, the response will look something like
 }]
 ```
 
+Run  `npm test test/phase-07-spec.js` from the root directory to check that all mocha
+tests for this phase are passing.
+
+_Run `npm test` from the root directory to run all tests. Note that the tests may not run in the same order as the project phases._
+
 ## Congratulations!
 
 You have completed the core phases of this practice!
 
 Several bonus phases have been provided for you to continue to deepen your
-knowledge, and prepare for the project week. If you don't complete all the 
+knowledge, and prepare for the project week. If you don't complete all the
 bonus phases, now you can revisit them during assessment prep, or when you
 are preparing your project work.
 

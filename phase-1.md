@@ -7,6 +7,8 @@ routes which `SELECT` data from the database.
 
 Begin by opening the routes file: __server/routes/trees.js__.
 
+You can check your work as you work through this phase by running `npm test test/phase-01-spec.js` from the root directory.
+
 ## Step A - Import model
 
 Near the top of the routes code, after the Express packages are imported, add
@@ -56,6 +58,8 @@ If you want to be thorough, you can also try an id that contains letters (e.g.
 abc) to ensure that error is also handled gracefully (without crashing Express).
 Review the code to understand how the error handling was implemented.
 
+Run  `npm test test/phase-01-spec.js` from the root directory to check that all mocha
+tests for this phase are passing.
 
 [trees-list]: http://localhost:5000/trees
 [docs-find-by-pk]: https://sequelize.org/master/class/src/model.js~Model.html#static-method-findByPk

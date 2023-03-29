@@ -3,6 +3,8 @@
 In this phase, you'll complete the **Sequelize** code for an **Express** route
 which `UPDATES`s an existing item in the database.
 
+You can check your work as you work through this phase by running `npm test test/phase-04-spec.js` from the root directory.
+
 ## Update a tree
 
 In __server/routes/trees.js__, find the `PUT` route handler.
@@ -21,7 +23,7 @@ Add code to get the following 5 properties out of the request body
 Then, add code to find the `Tree` with the matching id, update any / all non-id
 properties provided in the request body, and save those changes in the database.
 
-Respond with a **JSON** object containing 3 properties (similar to the other 
+Respond with a **JSON** object containing 3 properties (similar to the other
 routes):
 
 * `status` success
@@ -41,12 +43,12 @@ Using **Postman**, test this route. One possible body is
 ```
 
 Remember to rerun the GET for the list or the individual tree in **Postman** or
-your browser to verify that all the properties were updated properly in the 
+your browser to verify that all the properties were updated properly in the
 database.
 
 ## Handle ids that don't match
 
-This route receives the `id` in two place: the request body and the request
+This route receives the `id` in two places: the request body and the request
 parameters. Best practices say you should make sure they have the same value.
 
 Add a conditional before updating the `Tree` and if the id's don't match, use
@@ -59,13 +61,13 @@ Add a conditional before updating the `Tree` and if the id's don't match, use
 Where `<params id>` is the id provided as a request parameter, and `<body id>`
 is the one provided in the request body.
 
-In **Postman** try several combinations of ids that don't match, including one 
+In **Postman** try several combinations of ids that don't match, including one
 or both of them missing.
 
 ## Handle tree not found in database
 
 Anytime you need to find an object in the database, there is a chance that the
-id won't be found. Rather than returning an ugly error, you should return a 
+id won't be found. Rather than returning an ugly error, you should return a
 friendly one.
 
 Look back at your implementation for `SELECT`ing (in the `GET` method) or
@@ -79,3 +81,6 @@ Where the `<id>` in the message is the value provided in the request parameter.
 
 Verify using an `id` that is NOT in the database. Remember to update both the
 path and the body.
+
+Run  `npm test test/phase-04-spec.js` from the root directory to check that all mocha
+tests for this phase are passing.

@@ -8,4 +8,10 @@ module.exports = {
     typeValidation: true,
     // logging: false
   },
+  test: {
+    storage: process.env.DB_TEST_FILE,
+    dialect: "sqlite",
+    seederStorage: "sequelize",
+    logging: false
+  }
 };

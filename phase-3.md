@@ -1,8 +1,10 @@
 # Basic Phase 3 - DELETE Using Sequelize Queries
 
 In this phase, you'll complete the **Sequelize** code for an **Express** route
-which will `DELETE` a tree from the database. You'll also show a friendly 
+which will `DELETE` a tree from the database. You'll also show a friendly
 message if the provided `id` is not in the database.
+
+You can check your work as you work through this phase by running `npm test test/phase-03-spec.js` from the root directory.
 
 ## Delete tree
 
@@ -15,8 +17,8 @@ provided in the request params.
 
 ## Verify your work
 
-In **Postman**, use the `DELETE` method to call 
-[http://localhost:5000/trees/:id][test-path] where `:id` is a valid `id` for one 
+In **Postman**, use the `DELETE` method to call
+[http://localhost:5000/trees/:id][test-path] where `:id` is a valid `id` for one
 of the trees in the database.
 
 Also, view the list again (`GET /trees`) to ensure that tree has truly been
@@ -25,7 +27,7 @@ removed from the database.
 ## Gracefully handle tree not found
 
 In **Postman**, use the `DELETE` method to call
-[http://localhost:5000/trees/:id][test-path] where `:id` is NOT a valid `id` for 
+[http://localhost:5000/trees/:id][test-path] where `:id` is NOT a valid `id` for
 one of the trees in the database (e.g. 123).
 
 Notice that a error is returned, but it would not be friendly to show these
@@ -40,7 +42,7 @@ then call the `next()` function in **Express** with an error object containing
 
 Where the `<id>` in the message is the value provided in the request parameter.
 
-Repeat the call in **Postman** with the invalid id to see your new error 
+Repeat the call in **Postman** with the invalid id to see your new error
 response.
 
 ## Verify again
@@ -48,5 +50,7 @@ response.
 Since you changed the code, make sure the delete still works when a valid id
 is provided.
 
+Run  `npm test test/phase-03-spec.js` from the root directory to check that all mocha
+tests for this phase are passing.
 
 [test-path]: http://localhost:5000/trees/:id

@@ -2,12 +2,14 @@
 
 In this phase, you will generate seed data for the insects seen at each tree.
 
-The scientists say that the __Western Pygmy Blue Butterfly__ was seen at the 
-biggest trees EXCEPT __President__, and the __Patu Digua Spider__ was only found 
+The scientists say that the __Western Pygmy Blue Butterfly__ was seen at the
+biggest trees EXCEPT __President__, and the __Patu Digua Spider__ was only found
 near __Stagg__, so far.
 
-For additional practice, you can pretend to be a scientist and decide 
+For additional practice, you can pretend to be a scientist and decide
 which other insects were found near which trees.
+
+You can check your work as you work through this phase by running `npm test test/phase-06-spec.js` from the root directory.
 
 ## Create seeder
 
@@ -66,3 +68,6 @@ back to it later in this practice, or during assessment prep.
 
 If you have an error you can't solve after reasonable debugging and research,
 formulate a good question, and reach out to your instructors.
+
+Run  `npm test test/phase-06-spec.js` from the root directory to check that all mocha
+tests for this phase are passing.
