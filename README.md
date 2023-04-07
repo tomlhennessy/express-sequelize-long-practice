@@ -73,7 +73,16 @@ in completing this practice.
 
 Good luck! You can do it!!!
 
+## Submission
 
-[localhost]: http://localhost:5000/
+After you are done with all the phases, submit your work. Make sure to delete
+the `node_modules` folders in __BOTH root and server directories__!!
+
+1. Delete the `node_modules` folder in the root directory
+2. Delete the `node_modules` folder in the __server__ directory
+3. Zip up the project folder
+4. Submit the zip file
+
+[localhost]: http://localhost:8000/
 [docs]: https://sequelize.org/master/manual/getting-started.html#new-databases-versus-existing-databases
 [cli-docs]: https://github.com/sequelize/cli

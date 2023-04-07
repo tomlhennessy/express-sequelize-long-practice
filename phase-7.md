@@ -139,6 +139,15 @@ knowledge, and prepare for the project week. If you don't complete all the
 bonus phases, now you can revisit them during assessment prep, or when you
 are preparing your project work.
 
+## Submission
+
+Submit your work. Make sure to delete the `node_modules` folders in
+__BOTH root and server directories__!!
+
+1. Delete the `node_modules` folder in the root directory
+2. Delete the `node_modules` folder in the __server__ directory
+3. Zip up the project folder
+4. Submit the zip file
 
 [ref-docs]: https://sequelize.org/master/manual/assocs.html#fetching-associations---eager-loading-vs-lazy-loading
 [eager-loading-docs]: https://sequelize.org/master/manual/eager-loading.html
