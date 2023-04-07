@@ -1,31 +1,11 @@
-/* ---------------- This section must be at the top: ---------------- */
-for (let module in require.cache) { delete require.cache[module] }
-const path = require('path');
-const DB_TEST_FILE = 'db/' + path.basename(__filename, '.js') + '.db';
-const SERVER_DB_TEST_FILE = 'server/' + DB_TEST_FILE;
-process.env.DB_TEST_FILE = SERVER_DB_TEST_FILE;
-/* ------------------------------------------------------------------ */
-
-const chai = require('chai');
-const chaiAsPromised = require("chai-as-promised");
-chai.use(chaiAsPromised);
-let chaiHttp = require('chai-http');
-let server = require('../server/app');
-chai.use(chaiHttp);
+const { setupBefore, setupChai, removeTestDB, runSQLQuery } = require('./utils/test-utils');
+const chai = setupChai();
 const expect = chai.expect;
 
-const { resetDB, seedAllDB, removeTestDB, runSQLQuery } = require('./utils/test-utils');
-
 describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
-
-  before(async () => {
-    await resetDB(DB_TEST_FILE);
-    return await seedAllDB(DB_TEST_FILE);
-  });
-
-  after(async () => {
-    return await removeTestDB(DB_TEST_FILE);
-  });
+  let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
+  before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+  after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('POST /trees (valid requests)', () => {
     let newTreeResponse;
@@ -73,7 +53,7 @@ describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
     });
 
     it('new tree was added to the database', async () => {
-      const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = \"My Big Tree\";", SERVER_DB_TEST_FILE)
+      const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = 'My Big Tree';", SERVER_DB_TEST_FILE)
       expect(sqlResponse).to.be.an('array');
       expect(sqlResponse).to.have.length(1);
       expect(sqlResponse[0].id).to.equal(6);
@@ -103,7 +83,7 @@ describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
         expect(invalidNameTreeResponse.body).to.have.own.property('message');
         expect(invalidNameTreeResponse.body).to.have.own.property('details');
         expect(invalidNameTreeResponse.body).to.not.have.own.property('data');
-        const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = \"General Sherman\";", SERVER_DB_TEST_FILE)
+        const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = 'General Sherman';", SERVER_DB_TEST_FILE)
         expect(sqlResponse).to.be.an('array');
         expect(sqlResponse).to.have.length(1);
         expect(sqlResponse[0].id).to.equal(1);

@@ -46,6 +46,6 @@ app.use((req, res) => {
 if (require.main === module) {
     const port = 8000;
     app.listen(port, () => console.log('Server is listening on port', port));
-  } else {
+} else {
     module.exports = app;
-  }
+}

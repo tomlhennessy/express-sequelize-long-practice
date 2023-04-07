@@ -1,32 +1,11 @@
-/* ---------------- This section must be at the top: ---------------- */
-for (let module in require.cache) { delete require.cache[module] }
-const path = require('path');
-const DB_TEST_FILE = 'db/' + path.basename(__filename, '.js') + '.db';
-const SERVER_DB_TEST_FILE = 'server/' + DB_TEST_FILE;
-process.env.DB_TEST_FILE = SERVER_DB_TEST_FILE;
-/* ------------------------------------------------------------------ */
-
-const chai = require('chai');
-const chaiAsPromised = require("chai-as-promised");
-chai.use(chaiAsPromised);
-let chaiHttp = require('chai-http');
-let server = require('../server/app');
-chai.use(chaiHttp);
+const { setupBefore, setupChai, removeTestDB, runSQLQuery } = require('./utils/test-utils');
+const chai = setupChai();
 const expect = chai.expect;
 
-const { resetDB, seedAllDB, removeTestDB } = require('./utils/test-utils');
-const { Tree } = require('../server/db/models')
-
 describe('Basic Phase 3 - DELETE Using Sequelize Queries', () => {
-
-  before(async () => {
-    await resetDB(DB_TEST_FILE);
-    return await seedAllDB(DB_TEST_FILE);
-  });
-
-  after(async () => {
-    return await removeTestDB(DB_TEST_FILE);
-  });
+  let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
+  before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+  after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('DELETE /trees/:id (valid requests)', () => {
     let newTree;
@@ -43,13 +22,13 @@ describe('Basic Phase 3 - DELETE Using Sequelize Queries', () => {
         .post('/trees')
         .send(reqBody)
 
-      newTree = await Tree.findOne({ where: {tree: "Tree to be deleted"}, raw: true})
+      newTree = await models.Tree.findOne({ where: {tree: "Tree to be deleted"}, raw: true})
 
     })
 
     it('deleted a tree by id', async () => {
 
-        const allTreesBefore = await Tree.count()
+        const allTreesBefore = await models.Tree.count()
 
         await chai.request(server)
             .delete(`/trees/${newTree.id}`)
@@ -63,7 +42,7 @@ describe('Basic Phase 3 - DELETE Using Sequelize Queries', () => {
                 expect(res.body.message).to.equal(`Successfully removed tree ${newTree.id}`);
 
             });
-        const allTreesAfter = await Tree.count()
+        const allTreesAfter = await models.Tree.count()
         expect(allTreesAfter).to.equal(allTreesBefore - 1)
     });
   });
@@ -73,7 +52,7 @@ describe('Basic Phase 3 - DELETE Using Sequelize Queries', () => {
 
     it('cannot delete a tree that does not exist', async () => {
 
-        const allTreesBefore = await Tree.count()
+        const allTreesBefore = await models.Tree.count()
 
         let id = 17;
         await chai.request(server)
@@ -90,7 +69,7 @@ describe('Basic Phase 3 - DELETE Using Sequelize Queries', () => {
                 expect(res.body.details).to.equal('Tree not found');
 
             });
-        const allTreesAfter = await Tree.count()
+        const allTreesAfter = await models.Tree.count()
         expect(allTreesAfter).to.equal(allTreesBefore)
     });
   });
