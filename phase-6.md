@@ -9,7 +9,7 @@ near __Stagg__, so far.
 For additional practice, you can pretend to be a scientist and decide
 which other insects were found near which trees.
 
-You can check your work as you work through this phase by running `npm test test/phase-06-spec.js` from the root directory.
+You can check your work as you work through this phase by running `npm test test/phase-06-spec.js` from the __server__ directory.
 
 ## Create seeder
 
@@ -69,5 +69,5 @@ back to it later in this practice, or during assessment prep.
 If you have an error you can't solve after reasonable debugging and research,
 formulate a good question, and reach out to your instructors.
 
-Run  `npm test test/phase-06-spec.js` from the root directory to check that all mocha
-tests for this phase are passing.
+Run  `npm test test/phase-06-spec.js` from the __server__ directory to check
+that all mocha tests for this phase are passing.

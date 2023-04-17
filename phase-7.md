@@ -3,7 +3,7 @@
 In this phase, you'll update a couple routes to return data containing both
 `Trees` and `Insects`.
 
-You can check your work as you work through this phase by running `npm test test/phase-07-spec.js` from the root directory.
+You can check your work as you work through this phase by running `npm test test/phase-07-spec.js` from the __server__ directory.
 
 ## Setup
 
@@ -125,10 +125,11 @@ The response will look something like:
 }]
 ```
 
-Run  `npm test test/phase-07-spec.js` from the root directory to check that all mocha
-tests for this phase are passing.
+Run  `npm test test/phase-07-spec.js` from the __server__ directory to check
+that all mocha tests for this phase are passing.
 
-_Run `npm test` from the root directory to run all tests. Note that the tests may not run in the same order as the project phases._
+_Run `npm test` from the __server__ directory to run all tests. Note that the
+tests may not run in the same order as the project phases._
 
 ## Congratulations!
 
@@ -141,13 +142,11 @@ are preparing your project work.
 
 ## Submission
 
-Submit your work. Make sure to delete the `node_modules` folders in
-__BOTH root and server directories__!!
+Submit your work.
 
-1. Delete the `node_modules` folder in the root directory
-2. Delete the `node_modules` folder in the __server__ directory
-3. Zip up the project folder
-4. Submit the zip file
+1. Delete the `node_modules` folder in the __server__ directory
+2. Zip up the project folder
+3. Submit the zip file
 
 [ref-docs]: https://sequelize.org/master/manual/assocs.html#fetching-associations---eager-loading-vs-lazy-loading
 [eager-loading-docs]: https://sequelize.org/master/manual/eager-loading.html

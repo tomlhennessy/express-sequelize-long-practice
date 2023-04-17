@@ -4,7 +4,7 @@ In this phase, you'll complete the **Sequelize** code for an **Express** route
 which will `DELETE` a tree from the database. You'll also show a friendly
 message if the provided `id` is not in the database.
 
-You can check your work as you work through this phase by running `npm test test/phase-03-spec.js` from the root directory.
+You can check your work as you work through this phase by running `npm test test/phase-03-spec.js` from the __server__ directory.
 
 ## Delete tree
 
@@ -50,7 +50,7 @@ response.
 Since you changed the code, make sure the delete still works when a valid id
 is provided.
 
-Run  `npm test test/phase-03-spec.js` from the root directory to check that all mocha
-tests for this phase are passing.
+Run  `npm test test/phase-03-spec.js` from the __server__ directory to check
+that all mocha tests for this phase are passing.
 
 [test-path]: http://localhost:5000/trees/:id

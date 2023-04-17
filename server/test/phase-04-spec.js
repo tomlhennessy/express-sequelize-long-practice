@@ -3,8 +3,8 @@ const chai = setupChai();
 const expect = chai.expect;
 
 describe('Intermediate Phase 4 - UPDATE Using Sequelize Queries', () => {
-  let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
-  before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+  let DB_TEST_FILE, models, server;
+  before(async () => ({ server, models, DB_TEST_FILE } = await setupBefore(__filename)));
   after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('PUT /trees/:id (valid requests)', () => {
@@ -43,7 +43,7 @@ describe('Intermediate Phase 4 - UPDATE Using Sequelize Queries', () => {
     });
 
     it('tree was updated in the database', async () => {
-      const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE id = 3;", SERVER_DB_TEST_FILE)
+      const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE id = 3;", DB_TEST_FILE)
       expect(sqlResponse).to.be.an('array');
       expect(sqlResponse).to.have.length(1);
       expect(sqlResponse[0].tree).to.equal("President-edit");
@@ -107,12 +107,12 @@ describe('Intermediate Phase 4 - UPDATE Using Sequelize Queries', () => {
     });
 
     it('invalid id requests do not update either database record', async () => {
-      const sqlResponse1 = await runSQLQuery("SELECT * FROM Trees WHERE id = 3;", SERVER_DB_TEST_FILE)
+      const sqlResponse1 = await runSQLQuery("SELECT * FROM Trees WHERE id = 3;", DB_TEST_FILE)
       expect(sqlResponse1).to.be.an('array');
       expect(sqlResponse1).to.have.length(1);
       expect(sqlResponse1[0].tree).to.not.equal("mismatch-edit");
 
-      const sqlResponse2 = await runSQLQuery("SELECT * FROM Trees WHERE id = 2;", SERVER_DB_TEST_FILE)
+      const sqlResponse2 = await runSQLQuery("SELECT * FROM Trees WHERE id = 2;", DB_TEST_FILE)
       expect(sqlResponse2).to.be.an('array');
       expect(sqlResponse2).to.have.length(1);
       expect(sqlResponse2[0].tree).to.not.equal("mismatch-edit");

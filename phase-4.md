@@ -3,7 +3,7 @@
 In this phase, you'll complete the **Sequelize** code for an **Express** route
 which `UPDATES`s an existing item in the database.
 
-You can check your work as you work through this phase by running `npm test test/phase-04-spec.js` from the root directory.
+You can check your work as you work through this phase by running `npm test test/phase-04-spec.js` from the __server__ directory.
 
 ## Update a tree
 
@@ -82,5 +82,5 @@ Where the `<id>` in the message is the value provided in the request parameter.
 Verify using an `id` that is NOT in the database. Remember to update both the
 path and the body.
 
-Run  `npm test test/phase-04-spec.js` from the root directory to check that all mocha
-tests for this phase are passing.
+Run  `npm test test/phase-04-spec.js` from the __server__ directory to check
+that all mocha tests for this phase are passing.

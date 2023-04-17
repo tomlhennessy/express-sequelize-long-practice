@@ -38,7 +38,7 @@ These will be objects with attributes that match the request body for creating
 a `Tree` and an `Insect`, respectively. Alternately, either one or both could
 contain just an id of an existing `Tree` or `Insect`, respectively.
 
-Below you will find some examples you can use to test you solution when it's
+Below you will find some examples you can use to test your solution when it's
 ready.
 
 ## Handle `tree` attribute
@@ -119,7 +119,7 @@ up with more on your own to cover as much of the feature as possible.
 }
 ```
 
-Repeat this again (once successful) to test the handling of a duplicate 
+Repeat this again (once successful) to test the handling of a duplicate
 association.
 
 ### Invalid data

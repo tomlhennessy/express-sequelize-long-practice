@@ -3,8 +3,8 @@ const chai = setupChai();
 const expect = chai.expect;
 
 describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
-  let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
-  before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+  let DB_TEST_FILE, models, server;
+  before(async () => ({ server, models, DB_TEST_FILE } = await setupBefore(__filename)));
   after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('POST /trees (valid requests)', () => {
@@ -53,7 +53,7 @@ describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
     });
 
     it('new tree was added to the database', async () => {
-      const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = 'My Big Tree';", SERVER_DB_TEST_FILE)
+      const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = 'My Big Tree';", DB_TEST_FILE)
       expect(sqlResponse).to.be.an('array');
       expect(sqlResponse).to.have.length(1);
       expect(sqlResponse[0].id).to.equal(6);
@@ -83,7 +83,7 @@ describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
         expect(invalidNameTreeResponse.body).to.have.own.property('message');
         expect(invalidNameTreeResponse.body).to.have.own.property('details');
         expect(invalidNameTreeResponse.body).to.not.have.own.property('data');
-        const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = 'General Sherman';", SERVER_DB_TEST_FILE)
+        const sqlResponse = await runSQLQuery("SELECT * FROM Trees WHERE tree = 'General Sherman';", DB_TEST_FILE)
         expect(sqlResponse).to.be.an('array');
         expect(sqlResponse).to.have.length(1);
         expect(sqlResponse[0].id).to.equal(1);

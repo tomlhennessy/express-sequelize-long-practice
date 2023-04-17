@@ -12,9 +12,12 @@ database operations.
 
 Download the starter.
 
-Install dependencies using `npm install`. This will install dependencies at the root of the project, as well as install dependencies within the __server__ folder.
+`cd` into the __server__ folder.
 
-`cd` into __server__ folder, and create a __server/.env__ file in order to store
+Install dependencies inside the __server__ folder using `npm install`. This will
+install dependencies within the __server__ folder.
+
+Create a __server/.env__ file in order to store
 environment variables. Add a variable `DB_FILE` (which is already in use in
 __server/config/database.js__). You can model the __.env__ file after
 __.env.example__, specifying the location of the database to be created.
@@ -35,11 +38,11 @@ Verify that the __db/dev.db__ file was created. If you encounter any
 errors or do not see this file, go back and check that your __.env__ file has
 been accurately set up.
 
-Verify the table exists by checking its `schema` using the **Sqlite CLI**.
+Verify the table exists by checking its `schema` using the **SQLite3 CLI**.
 
 Run the appropriate seed command using the **Sequelize CLI**.
 
-Verify the table has data using the **Sqlite CLI**.
+Verify the table has data using the **SQLite3 CLI**.
 
 ### Run the application
 
@@ -76,12 +79,11 @@ Good luck! You can do it!!!
 ## Submission
 
 After you are done with all the phases, submit your work. Make sure to delete
-the `node_modules` folders in __BOTH root and server directories__!!
+the `node_modules` folder in the __server__ directory!
 
-1. Delete the `node_modules` folder in the root directory
-2. Delete the `node_modules` folder in the __server__ directory
-3. Zip up the project folder
-4. Submit the zip file
+1. Delete the `node_modules` folder in the __server__ directory
+2. Zip up the project folder
+3. Submit the zip file
 
 [localhost]: http://localhost:8000/
 [docs]: https://sequelize.org/master/manual/getting-started.html#new-databases-versus-existing-databases

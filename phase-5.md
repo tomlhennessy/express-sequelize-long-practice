@@ -3,7 +3,7 @@
 In this phase, you will upgrade the database to track which insects have been
 spotted on or near which trees.
 
-You can check your work as you work through this phase by running `npm test test/phase-05-spec.js` from the root directory.
+You can check your work as you work through this phase by running `npm test test/phase-05-spec.js` from the __server__ directory.
 
 ## Review the requirements
 
@@ -43,8 +43,8 @@ In both models of this relationship, `Insect` and `Tree`, create a
 `belongsToMany` association. Be sure to indicate which model you are connecting
 to and that you are connecting through the `InsectTree` model.
 
-Run  `npm test test/phase-05-spec.js` from the root directory to check that all mocha
-tests for this phase are passing.
+Run  `npm test test/phase-05-spec.js` from the __server__ directory to check
+that all mocha tests for this phase are passing.
 
 In the next phase, you will interact with these associations as you implement
 dynamic seeding. If you run into any errors, you may revisit this phase.

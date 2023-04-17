@@ -3,7 +3,7 @@
 In this phase, you'll complete the **Sequelize** code for an **Express** route
 which `INSERT`s data into the database.
 
-You can check your work as you work through this phase by running `npm test test/phase-02-spec.js` from the root directory.
+You can check your work as you work through this phase by running `npm test test/phase-02-spec.js` from the __server__ directory.
 
 ## Create a new tree
 
@@ -51,5 +51,5 @@ Third, what happens if some fields are missing from the request body?
 
 Can you think of anything else that should be tested also?
 
-Run  `npm test test/phase-02-spec.js` from the root directory to check that all mocha
-tests for this phase are passing.
+Run  `npm test test/phase-02-spec.js` from the __server__ directory to check
+that all mocha tests for this phase are passing.

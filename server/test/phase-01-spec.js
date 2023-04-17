@@ -3,8 +3,8 @@ const chai = setupChai();
 const expect = chai.expect;
 
 describe('Basic Phase 1 - SELECT Using Sequelize Queries', () => {
-  let DB_TEST_FILE, SERVER_DB_TEST_FILE, models, server;
-  before(async () => ({ server, models, DB_TEST_FILE, SERVER_DB_TEST_FILE } = await setupBefore(__filename)));
+  let DB_TEST_FILE, models, server;
+  before(async () => ({ server, models, DB_TEST_FILE } = await setupBefore(__filename)));
   after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('B. GET /trees', () => {
