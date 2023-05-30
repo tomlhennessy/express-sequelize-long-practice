@@ -1,5 +1,7 @@
 'use strict';
 
+const { Tree } = require('../models');
+
 const trees = [
   {
     tree: 'General Sherman',
@@ -44,7 +46,12 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Trees', trees);
+    try {
+      await Tree.bulkCreate(trees, { validate: true });
+    } catch(err) {
+      console.error(err);
+      throw err;
+    }
   },
 
   down: async (queryInterface, Sequelize) => {

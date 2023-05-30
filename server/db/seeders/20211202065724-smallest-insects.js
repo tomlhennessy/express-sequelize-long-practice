@@ -1,5 +1,7 @@
 'use strict';
 
+const { Insect } = require('../models');
+
 const insects = [
   {
     name: 'Western Pygmy Blue Butterfly',
@@ -29,7 +31,12 @@ module.exports = {
      * }], {});
     */
 
-    await queryInterface.bulkInsert('Insects', insects);
+    try {
+      await Insect.bulkCreate(insects, { validate: true });
+    } catch(err) {
+      console.error(err);
+      throw err;
+    }
   },
 
   down: async (queryInterface, Sequelize) => {
