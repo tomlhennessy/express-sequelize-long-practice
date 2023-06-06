@@ -1,10 +1,15 @@
-const { setupBefore, setupChai, removeTestDB, runSQLQuery } = require('./utils/test-utils');
+const { setupBeforeNoSeeds, setupChai, removeTestDB, getAllSeederFiles, seedDBFile } = require('./utils/test-utils');
 const chai = setupChai();
 const expect = chai.expect;
 
 describe('Intermediate Phase 5: Join Table & Associations', () => {
   let DB_TEST_FILE, models, server;
-  before(async () => ({ server, models, DB_TEST_FILE } = await setupBefore(__filename)));
+  before(async () => {
+    ({ server, models, DB_TEST_FILE } = await setupBeforeNoSeeds(__filename))
+    const [trees, insects] = getAllSeederFiles();
+    await seedDBFile(trees, DB_TEST_FILE);
+    await seedDBFile(insects, DB_TEST_FILE);
+  });
   after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('Many to Many Association between Insect and Tree', () => {

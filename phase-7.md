@@ -19,6 +19,9 @@ __server/routes/joined.js__.
 Look at your notes or the [Sequelize Documentation][ref-docs] if you need a
 refresher on Eager vs. Lazy Loading.
 
+Make sure you are passing the specs for Phase 6 before attempting to do this
+phase by running `npm test test/phase-06-spec.js`.
+
 ## Eager loading
 
 Find the route for the path `/trees-insects`. Implement the eager loading

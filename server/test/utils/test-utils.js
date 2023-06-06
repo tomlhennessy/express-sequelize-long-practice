@@ -180,6 +180,18 @@ module.exports.setupBefore = async (filename) => {
   return { server, models, DB_TEST_FILE };
 };
 
+module.exports.setupBeforeNoSeeds = async (filename) => {
+  for (let module in require.cache) { delete require.cache[module] }
+  // for all server files in cache, delete it from the cache
+  const path = require('path');
+  DB_TEST_FILE = 'db/' + path.basename(filename, '.js') + '.db';
+  process.env.DB_TEST_FILE = DB_TEST_FILE;
+  const server = require(path.resolve(process.cwd(), 'app'));
+  const models = require(path.resolve(process.cwd(), 'db', 'models'));
+  await resetDB(DB_TEST_FILE);
+  return { server, models, DB_TEST_FILE };
+};
+
 module.exports.setupChai = () => {
   const chai = require('chai');
   const chaiAsPromised = require("chai-as-promised");

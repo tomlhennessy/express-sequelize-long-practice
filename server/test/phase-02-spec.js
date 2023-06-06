@@ -1,10 +1,15 @@
-const { setupBefore, setupChai, removeTestDB, runSQLQuery } = require('./utils/test-utils');
+const { setupBeforeNoSeeds, setupChai, removeTestDB, getAllSeederFiles, seedDBFile, runSQLQuery } = require('./utils/test-utils');
 const chai = setupChai();
 const expect = chai.expect;
 
 describe('Basic Phase 2 - INSERT Using Sequelize Queries', () => {
   let DB_TEST_FILE, models, server;
-  before(async () => ({ server, models, DB_TEST_FILE } = await setupBefore(__filename)));
+  before(async () => {
+    ({ server, models, DB_TEST_FILE } = await setupBeforeNoSeeds(__filename))
+    const [trees, insects] = getAllSeederFiles();
+    await seedDBFile(trees, DB_TEST_FILE);
+    await seedDBFile(insects, DB_TEST_FILE);
+  });
   after(async () => await removeTestDB(DB_TEST_FILE));
 
   describe('POST /trees (valid requests)', () => {
