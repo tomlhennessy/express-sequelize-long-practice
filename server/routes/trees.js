@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * BASIC PHASE 1, Step A - Import model
  */
-// Your code here
+const { Tree } = require('../db/models');
 
 /**
  * INTERMEDIATE BONUS PHASE 1 (OPTIONAL), Step A:
@@ -24,11 +24,15 @@ const router = express.Router();
  *   - Ordered by the heightFt from tallest to shortest
  */
 router.get('/', async (req, res, next) => {
-    let trees = [];
-
-    // Your code here
-
-    res.json(trees);
+    try {
+        const trees = await Tree.findAll({
+            attributes: ['heightFt', 'tree', 'id'],
+            order: [['heightFt', 'DESC']],
+        });
+        res.json(trees);
+    } catch (err) {
+        next(err); // passes the error to error-handling middleware
+    }
 });
 
 /**
@@ -44,7 +48,8 @@ router.get('/:id', async (req, res, next) => {
     let tree;
 
     try {
-        // Your code here
+        const treeId = req.params.id;
+        tree = await Tree.findByPk(treeId);
 
         if (tree) {
             res.json(tree);
