@@ -1,6 +1,7 @@
 // Instantiate router - DO NOT MODIFY
 const express = require('express');
 const router = express.Router();
+const { sequelize } = require('sequelize');
 
 // Import models - DO NOT MODIFY
 const { Insect, Tree } = require('../db/models');
@@ -20,13 +21,24 @@ const { Op } = require("sequelize");
  *   - Insects for each tree ordered alphabetically by name
  */
 router.get('/trees-insects', async (req, res, next) => {
-    let trees = [];
+    try {
+        // fetch trees with insects using eager loading
+        const trees = await Tree.findAll({
+            include: {
+                model: Insect,
+                attributes: ['id', 'name'], // only include id and name for insect
+                through: { attributes: [] }, // exclude relationship data
+            },
+            where: {
+                '$Insects.id$': { [Sequelize.Op.not]: null }, // only trees with insects
+            },
+            order: [[{ model: Insect }, 'name', 'ASC']], // order insects by name
+        });
 
-    trees = await Tree.findAll({
-        attributes: ['id', 'tree', 'location', 'heightFt'],
-    });
-
-    res.json(trees);
+        res.json(trees);
+    } catch (err) {
+        next(err);
+    }
 });
 
 /**
@@ -43,22 +55,31 @@ router.get('/trees-insects', async (req, res, next) => {
  *   - Trees ordered alphabetically by tree
  */
 router.get('/insects-trees', async (req, res, next) => {
-    let payload = [];
+    try {
+        // fetch all insects
+        const insects = await Insect.findAll();
 
-    const insects = await Insect.findAll({
-        attributes: ['id', 'name', 'description'],
-        order: [ ['name'] ],
-    });
-    for (let i = 0; i < insects.length; i++) {
-        const insect = insects[i];
-        payload.push({
-            id: insect.id,
-            name: insect.name,
-            description: insect.description,
-        });
+        // lazy load associated trees for each insect
+        const results = await Promise.all(
+            insects.map(async (insect) => {
+                const trees = await insect.getTrees({
+                    attributes: ['id', 'tree'], // only include id and tree for trees
+                    order: [['tree', 'ASC']], // order trees alphabetically by name
+                });
+
+                return {
+                    id: insect.id,
+                    name: insect.name,
+                    description: insect.description,
+                    trees,
+                }
+            })
+        )
+
+        res.json(results);
+    } catch (err) {
+        next(err);
     }
-
-    res.json(payload);
 });
 
 /**
