@@ -1,6 +1,8 @@
+const path = require('path');
+
 module.exports = {
   development: {
-    storage: process.env.DB_FILE,
+    storage: process.env.DB_FILE || path.join(__dirname, '../db/dev.db'),
     dialect: "sqlite",
     seederStorage: "sequelize",
     benchmark: true,
